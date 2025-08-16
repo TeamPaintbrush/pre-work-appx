@@ -1,0 +1,46 @@
+config:
+  target: 'http://localhost:3003'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+    - duration: 120
+      arrivalRate: 20
+    - duration: 60
+      arrivalRate: 30
+  payload:
+    path: './test-data.csv'
+    fields:
+      - userId
+      - checklistTitle
+
+scenarios:
+  - name: "Load test checklist operations"
+    weight: 70
+    flow:
+      - get:
+          url: "/"
+      - get:
+          url: "/api/checklists?userId={{ userId }}"
+      - post:
+          url: "/api/checklists"
+          json:
+            userId: "{{ userId }}"
+            title: "{{ checklistTitle }}"
+            checklistData:
+              sections:
+                - id: "test-section"
+                  title: "Test Section"
+                  items:
+                    - id: "test-item"
+                      text: "Test Item"
+                      completed: false
+
+  - name: "Load test static pages"
+    weight: 30
+    flow:
+      - get:
+          url: "/"
+      - get:
+          url: "/profile"
+      - get:
+          url: "/settings"
