@@ -244,7 +244,7 @@ class LocalStorageService {
   getStorageUsage(): { used: number; available: number; percentage: number } {
     try {
       let totalSize = 0;
-      for (let key in localStorage) {
+      for (const key in localStorage) {
         if (localStorage.hasOwnProperty(key) && key.startsWith(this.prefix)) {
           totalSize += localStorage.getItem(key)?.length || 0;
         }

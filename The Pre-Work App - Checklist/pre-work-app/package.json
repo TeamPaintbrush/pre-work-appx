@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "deploy": "npm run build && echo 'Build complete! Push to GitHub to deploy via GitHub Actions.'",
     "type-check": "tsc --noEmit",
     "test:aws": "cd . && tsx scripts/tests/test-aws-integration.ts",
     "setup:aws": "echo 'Please follow AWS_SETUP_GUIDE.md to set up your AWS resources'"

@@ -291,6 +291,11 @@ export class TemplateService {
   // Storage Management
   private saveToStorage(): void {
     try {
+      // Check if we're in a browser environment
+      if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+        return;
+      }
+
       localStorage.setItem('templates', JSON.stringify(Array.from(this.templates.entries())));
       localStorage.setItem('template_versions', JSON.stringify(Array.from(this.versions.entries())));
       localStorage.setItem('template_shares', JSON.stringify(Array.from(this.shares.entries())));
@@ -302,6 +307,12 @@ export class TemplateService {
 
   private loadFromStorage(): void {
     try {
+      // Check if we're in a browser environment
+      if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+        console.log('Failed to load templates from storage: localStorage is not available (SSR)');
+        return;
+      }
+
       const templatesData = localStorage.getItem('templates');
       if (templatesData) {
         this.templates = new Map(JSON.parse(templatesData));

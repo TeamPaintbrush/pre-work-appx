@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ChecklistContainer from '../../components/Checklist/ChecklistContainer';
 import { PreWorkChecklist } from '../../types';
@@ -8,7 +8,7 @@ import { createChecklistFromTemplate, validateTemplateForConversion } from '../.
 import { PRESET_TEMPLATES } from '../../data/presetChecklists';
 import Button from '../../components/UI/Button';
 
-const ChecklistPage = () => {
+const ChecklistPageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [checklist, setChecklist] = useState<PreWorkChecklist | null>(null);
@@ -185,6 +185,14 @@ const ChecklistPage = () => {
         />
       </div>
     </div>
+  );
+};
+
+const ChecklistPage = () => {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+      <ChecklistPageContent />
+    </Suspense>
   );
 };
 
