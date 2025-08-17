@@ -8,6 +8,7 @@ import BackendStatus from '../components/Backend/BackendStatus';
 import { pageVariants, pageTransition, containerVariants, itemVariants } from '../components/Animation/AnimationProvider';
 
 export default function DashboardPage() {
+  // Clear console on page load in development
   React.useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.clear();
