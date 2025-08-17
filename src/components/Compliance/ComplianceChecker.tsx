@@ -1,10 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { PreWorkChecklist, ComplianceReport, ComplianceCheck, ComplianceResult, ComplianceCheckResult } from '../../types';
-import Button from '../UI/Button';
-import Modal from '../UI/Modal';
+import React, { useMemo } from 'react';
+import { PreWorkChecklist, ComplianceReport, ComplianceCheck, ComplianceCheckResult } from '../../types';
 
 interface ComplianceCheckerProps {
   checklist: PreWorkChecklist;
@@ -19,9 +16,6 @@ const ComplianceChecker: React.FC<ComplianceCheckerProps> = ({
   autoCheck = true,
   showDetails = false
 }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedCheck, setSelectedCheck] = useState<ComplianceCheckResult | null>(null);
-
   // Define compliance checks
   const complianceChecks: ComplianceCheck[] = useMemo(() => [
     {

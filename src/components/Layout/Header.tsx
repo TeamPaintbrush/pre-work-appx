@@ -8,13 +8,11 @@ import { useMobileDetection, useSwipeGesture, useLongPress, useVibration } from 
 interface HeaderProps {
   title?: string;
   showProfile?: boolean;
-  onProfileClick?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
   title = "Pre-Work Checklist", 
-  showProfile = true, 
-  onProfileClick 
+  showProfile = true
 }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isTouch, isMobile, orientation } = useMobileDetection();

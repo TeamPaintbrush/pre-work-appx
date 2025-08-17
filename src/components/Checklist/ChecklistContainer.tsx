@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { ChecklistContainerProps, PreWorkChecklist, ChecklistItem, ChecklistSection as ChecklistSectionType, ExportData, ComplianceReport } from '../../types';
+import { ChecklistContainerProps, ChecklistItem, ChecklistSection as ChecklistSectionType, ExportData, ComplianceReport } from '../../types';
 import { CLEANING_PREWORK_TEMPLATE, calculateProgress } from '../../data/presetChecklists';
 import { useEnhancedChecklist } from '../../hooks/useEnhancedChecklist';
-import { useComponentDebug, usePerformanceDebug } from '../../hooks/useDebugHooks';
+import { useComponentDebug } from '../../hooks/useDebugHooks';
 import ChecklistSection from './ChecklistSection';
 import ProgressBar from './ProgressBar';
 import EnhancedProgressBar from '../Progress/EnhancedProgressBar';
@@ -12,7 +12,6 @@ import ComplianceChecker from '../Compliance/ComplianceChecker';
 import PDFExport from '../Export/PDFExport';
 import AdvancedPDFExport from '../Export/AdvancedPDFExport';
 import AnalyticsDashboard from '../Analytics/AnalyticsDashboard';
-import MediaCapture from '../Media/MediaCapture';
 import AddItemForm from './AddItemForm';
 import AddSectionForm from './AddSectionForm';
 import Button from '../UI/Button';
@@ -20,33 +19,27 @@ import Modal from '../UI/Modal';
 
 const ChecklistContainer: React.FC<ChecklistContainerProps> = ({ 
   initialChecklist, 
-  onSave, 
   onExport 
 }) => {
   // Debug hooks
   const { logAction, reportError, addMetric } = useComponentDebug('ChecklistContainer');
-  const { measureTime, logRenderTime } = usePerformanceDebug();
 
   // Use enhanced checklist hook
   const {
     checklist,
     progress: enhancedProgress,
-    milestones,
     isLoading,
     error,
     actions: {
       toggleItem,
       addItem,
       updateItem,
-      deleteItem,
       addSection,
       updateSection,
-      deleteSection,
       resetChecklist,
       startSession,
       endSession,
-      exportData: exportChecklistData,
-      saveChecklist
+      exportData: exportChecklistData
     }
   } = useEnhancedChecklist(initialChecklist || CLEANING_PREWORK_TEMPLATE, {
     autoSave: true,
@@ -117,9 +110,6 @@ const ChecklistContainer: React.FC<ChecklistContainerProps> = ({
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  // Generate unique ID for new items/sections
-  const generateId = () => `custom_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
   const handleToggleSection = useCallback((sectionId: string) => {
     const section = checklist?.sections.find(s => s.id === sectionId);

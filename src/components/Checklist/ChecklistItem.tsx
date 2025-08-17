@@ -9,7 +9,6 @@ import { useMobileDetection, useSwipeGesture, useLongPress, useVibration } from 
 
 const ChecklistItem: React.FC<ChecklistItemProps> = ({ 
   item, 
-  sectionId, 
   onUpdate, 
   onToggleComplete 
 }) => {
