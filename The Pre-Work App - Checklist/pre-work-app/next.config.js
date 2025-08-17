@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  // basePath: '/pre-work-app',
-  // assetPrefix: '/pre-work-app/',
+  basePath: '/pre-work-app',
+  assetPrefix: '/pre-work-app/',
   trailingSlash: true,
   reactStrictMode: true,
   swcMinify: true,
