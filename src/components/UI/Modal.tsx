@@ -12,10 +12,10 @@ const Modal: React.FC<ModalProps> = ({
   children, 
   size = 'md' 
 }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const { announce } = useAriaLiveRegion();
   const { prefersReducedMotion } = useAccessibilityPreferences();
-  const { handleKeyDown } = useFocusTrap(isOpen, modalRef);
+  const { handleKeyDown } = useFocusTrap(isOpen, modalRef as React.RefObject<HTMLElement>);
 
   useEffect(() => {
     if (isOpen) {

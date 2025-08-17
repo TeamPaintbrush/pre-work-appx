@@ -5,7 +5,6 @@ const nextConfig = {
   assetPrefix: '/pre-work-appx/',
   trailingSlash: true,
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     unoptimized: true, // Required for static export
     domains: ['localhost'], // Add any external image domains you plan to use

@@ -18,12 +18,12 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({
   const [notes, setNotes] = useState(item.notes);
   const [showSwipeHint, setShowSwipeHint] = useState(false);
   
-  const itemRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement | null>(null);
   const { isMobile, isTouch } = useMobileDetection();
   const { vibrate } = useVibration();
 
   // Mobile swipe gestures
-  useSwipeGesture(itemRef, ({ direction }) => {
+  useSwipeGesture(itemRef as React.RefObject<HTMLElement>, ({ direction }) => {
     if (!isMobile) return;
     
     if (direction === 'right' && !item.isCompleted) {

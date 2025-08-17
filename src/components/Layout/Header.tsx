@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isTouch, isMobile, orientation } = useMobileDetection();
   const { vibrate } = useVibration();
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
 
   // Mobile menu toggle with haptic feedback
   const toggleMobileMenu = () => {
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
   }, 1000);
 
   // Swipe right to close mobile menu
-  useSwipeGesture(mobileMenuRef, (swipe) => {
+  useSwipeGesture(mobileMenuRef as React.RefObject<HTMLElement>, (swipe) => {
     if (swipe.direction === 'right' && showMobileMenu) {
       setShowMobileMenu(false);
     }
