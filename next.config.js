@@ -4,7 +4,7 @@ const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   experimental: {
-    missingSuspenseWithCSRBailout: false,
+    // Remove deprecated option - Next.js 15.4.6 has improved defaults
   },
   
   // Optimize chunk loading to prevent ChunkLoadError
