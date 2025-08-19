@@ -25,7 +25,7 @@ class CommunicationHubService {
   private s3Client: S3Client;
 
   constructor() {
-    const region = process.env.AWS_REGION || 'us-east-1';
+    const region = process.env.REGION || process.env.NEXT_PUBLIC_REGION || process.env.AWS_REGION || 'us-east-1';
     const credentials = {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,

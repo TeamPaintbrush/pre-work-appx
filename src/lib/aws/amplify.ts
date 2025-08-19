@@ -30,26 +30,26 @@ const amplifyConfig: ResourcesConfig = {
   API: {
     GraphQL: {
       endpoint: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev',
-      region: process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
+      region: process.env.REGION || process.env.NEXT_PUBLIC_REGION || process.env.AWS_REGION || process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
       defaultAuthMode: 'userPool' as const,
     },
     REST: {
       'PreWorkAppAPI': {
         endpoint: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev',
-        region: process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
+        region: process.env.REGION || process.env.NEXT_PUBLIC_REGION || process.env.AWS_REGION || process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
       }
     }
   },
   Storage: {
     S3: {
       bucket: process.env.NEXT_PUBLIC_S3_BUCKET || 'preworkapp-storage-dev',
-      region: process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
+      region: process.env.REGION || process.env.NEXT_PUBLIC_REGION || process.env.AWS_REGION || process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
     },
   },
   Analytics: {
     Pinpoint: {
       appId: process.env.NEXT_PUBLIC_PINPOINT_APP_ID || 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
-      region: process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
+      region: process.env.REGION || process.env.NEXT_PUBLIC_REGION || process.env.AWS_REGION || process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1',
     },
   },
 };
