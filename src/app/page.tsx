@@ -1,193 +1,145 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ChecklistContainer from '../components/Checklist/ChecklistContainer';
 import BackendStatus from '../components/Backend/BackendStatus';
-import { pageVariants, pageTransition, containerVariants, itemVariants } from '../components/Animation/AnimationProvider';
+import { AIDashboard } from '../components/AI';
+import { 
+  IntegrationAnalyticsDashboard,
+  WorkflowAutomation,
+  RealTimeSync
+} from '../components/Integrations';
 
 export default function DashboardPage() {
   React.useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.clear();
-      console.log('🏠 Pre-Work App - Dashboard loaded');
+      console.log('🏠 Pre-Work App - Dashboard loaded (Simple Mode)');
     }
   }, []);
 
   return (
-    <motion.div 
-      className="min-h-screen bg-gray-50"
-      variants={pageVariants}
-      initial="initial"
-      animate="in"
-      exit="out"
-      transition={pageTransition}
-    >
+    <div className="min-h-screen bg-gray-50">
       {/* Dashboard Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="flex flex-col md:flex-row md:items-center md:justify-between"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <motion.h1 
-                className="text-3xl md:text-4xl font-bold mb-2"
-                variants={itemVariants}
-              >
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">
                 Pre-Work Dashboard
-              </motion.h1>
-              <motion.p 
-                className="text-blue-100 text-lg"
-                variants={itemVariants}
-              >
-                Manage your cleaning and maintenance checklists
-              </motion.p>
+              </h1>
+              <p className="text-blue-100 text-lg">
+                Streamline your cleaning and maintenance projects
+              </p>
             </div>
-            <motion.div 
-              className="mt-4 md:mt-0 flex space-x-4"
-              variants={itemVariants}
-            >
-              <Link href="/templates" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            <div className="mt-4 md:mt-0 flex space-x-4">
+              <Link 
+                href="/templates" 
+                className="bg-white text-blue-600 hover:bg-blue-50 hover:text-blue-700 px-6 py-2 rounded-lg font-medium transition-all duration-200 shadow-sm border border-white/20"
+              >
                 Browse Templates
               </Link>
-              <Link href="/settings" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                Settings
+              <Link 
+                href="/settings?tab=integrations" 
+                className="bg-blue-500/20 text-white hover:bg-blue-500/30 backdrop-blur-sm px-6 py-2 rounded-lg font-medium transition-all duration-200 border border-white/20"
+              >
+                Integrations
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🧹</span>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Cleaning Checklist</h3>
-                <p className="text-gray-600">Start a new cleaning pre-work checklist</p>
-              </div>
-            </div>
-            <Link href="/checklist?templateId=cleaning-maintenance" className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
-              Start Cleaning
-            </Link>
-          </motion.div>
+        {/* AI Dashboard - Full Width */}
+        <div className="mb-8">
+          <AIDashboard
+            workspaceId="default-workspace"
+            userId="default-user"
+            checklistId="current-checklist"
+            tasks={[]}
+            currentProgress={{
+              percentage: 0,
+              completedTasks: 0,
+              totalTasks: 0,
+              velocity: 0,
+              timeSpent: 0
+            }}
+          />
+        </div>
 
-          <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🔧</span>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Maintenance Check</h3>
-                <p className="text-gray-600">Equipment and facility maintenance</p>
-              </div>
-            </div>
-            <Link href="/checklist?templateId=equipment-maintenance" className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-              Start Maintenance
-            </Link>
-          </motion.div>
+        {/* Integration Analytics Dashboard - Full Width */}
+        <div className="mb-8">
+          <IntegrationAnalyticsDashboard workspaceId="default-workspace" />
+        </div>
 
-          <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🎪</span>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Event Setup</h3>
-                <p className="text-gray-600">Event preparation and coordination</p>
-              </div>
-            </div>
-            <Link href="/checklist?templateId=event-setup" className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
-              Start Event
-            </Link>
-          </motion.div>
-        </motion.div>
+        {/* Integration Features - Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <WorkflowAutomation workspaceId="default-workspace" userId="default-user" />
+          <RealTimeSync workspaceId="default-workspace" connections={[]} />
+        </div>
 
-        {/* Backend Integration Status */}
-        <motion.div 
-          className="mb-8"
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <BackendStatus />
-        </motion.div>
-        
-        {/* Main Checklist Application */}
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Current Checklist
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Continue working on your active checklist or start a new one from a template.
-            </p>
-            <ChecklistContainer />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Checklist Container - Takes up 2/3 of the space */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-lg shadow-sm border">
+              <ChecklistContainer />
+            </div>
           </div>
-        </motion.div>
 
-        {/* Recent Activity */}
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
-          className="bg-white rounded-lg shadow-md p-6"
-        >
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Recent Activity</h2>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-green-600 text-sm">✓</span>
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Quick Stats */}
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Templates Available</span>
+                  <span className="font-semibold text-blue-600">200+</span>
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">Cleaning checklist completed</p>
-                  <p className="text-xs text-gray-500">2 hours ago</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Integrations</span>
+                  <span className="font-semibold text-green-600">Active</span>
                 </div>
-              </div>
-            </div>
-            <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-blue-600 text-sm">📋</span>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">New template created</p>
-                  <p className="text-xs text-gray-500">1 day ago</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">AWS Sync</span>
+                  <span className="font-semibold text-green-600">Connected</span>
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between py-2">
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-yellow-600 text-sm">⚠️</span>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">Maintenance reminder</p>
-                  <p className="text-xs text-gray-500">3 days ago</p>
-                </div>
+
+            {/* Backend Status */}
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">System Status</h3>
+              <BackendStatus />
+            </div>
+
+            {/* Quick Actions */}
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+              <div className="space-y-3">
+                <Link 
+                  href="/templates" 
+                  className="block w-full bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 text-blue-700 hover:text-blue-800 px-4 py-3 rounded-lg transition-all duration-200 text-center font-medium shadow-sm border border-blue-200"
+                >
+                  Browse Templates
+                </Link>
+                <Link 
+                  href="/settings?tab=integrations" 
+                  className="block w-full bg-gradient-to-r from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 text-green-700 hover:text-green-800 px-4 py-3 rounded-lg transition-all duration-200 text-center font-medium shadow-sm border border-green-200"
+                >
+                  Manage Integrations
+                </Link>
+                <button className="w-full bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 text-gray-700 hover:text-gray-800 px-4 py-3 rounded-lg transition-all duration-200 font-medium shadow-sm border border-gray-200">
+                  Export Data
+                </button>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

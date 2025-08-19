@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "preworkapp",
+      "type": "javascript",
+      "framework": "react",
+      "config": {
+        "SourceDir": "src",
+        "DistributionDir": "out",
+        "BuildCommand": "npm run build",
+        "StartCommand": "npm run start"
+      }
+    }
+  ]
+}

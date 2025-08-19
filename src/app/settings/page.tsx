@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import SettingsManager, { AppSettings } from '../../components/Settings/SettingsManager';
 import ProductionSettings from '../../components/Settings/ProductionSettings';
 import MonitoringSettings from '../../components/Settings/MonitoringSettings';
+import { IntegrationHub } from '../../components/Integrations/IntegrationHub';
 
 const defaultSettings: AppSettings = {
   general: {
@@ -61,9 +63,18 @@ const defaultSettings: AppSettings = {
   }
 };
 
-const SettingsPage = () => {
+const SettingsContent: React.FC = () => {
+  const searchParams = useSearchParams();
   const [settings, setSettings] = useState<AppSettings>(defaultSettings);
-  const [activeTab, setActiveTab] = useState<'general' | 'production' | 'monitoring' | 'security'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'accessibility' | 'notifications' | 'export' | 'privacy' | 'integrations' | 'monitoring' | 'production' | 'security'>('general');
+
+  // Handle navigation tab from URL
+  useEffect(() => {
+    const tabParam = searchParams.get('tab');
+    if (tabParam && ['general', 'accessibility', 'notifications', 'export', 'privacy', 'integrations', 'monitoring', 'production', 'security'].includes(tabParam)) {
+      setActiveTab(tabParam as any);
+    }
+  }, [searchParams]);
 
   // Load settings from localStorage on mount
   useEffect(() => {
@@ -123,6 +134,7 @@ const SettingsPage = () => {
     { id: 'production', label: 'Production', icon: '🚀' },
     { id: 'monitoring', label: 'Monitoring', icon: '📊' },
     { id: 'security', label: 'Security', icon: '🔒' },
+    { id: 'integrations', label: 'Integrations', icon: '🔗' },
   ];
 
   const renderSecurityTab = () => (
@@ -291,10 +303,35 @@ const SettingsPage = () => {
                 {renderSecurityTab()}
               </div>
             )}
+            
+            {activeTab === 'integrations' && (
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Third-Party Integrations</h2>
+                <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <strong>Integration Hub:</strong> Connect your Pre-Work App with external services like Slack, Microsoft Teams, Google Drive, and more. Manage webhooks, SSO, and API integrations from this centralized hub.
+                  </p>
+                </div>
+                <IntegrationHub className="border-0 shadow-none bg-transparent p-0" />
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
+  );
+};
+
+const SettingsPage: React.FC = () => {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading settings...</p>
+      </div>
+    </div>}>
+      <SettingsContent />
+    </Suspense>
   );
 };
 

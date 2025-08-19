@@ -6,6 +6,21 @@ export * from './user';
 export * from './auth';
 export * from './media';
 
+// Enterprise Features
+export * from './enterprise';
+
+// Collaboration Features
+export * from './collaboration';
+
+// Project Management Features
+export * from './projectManagement';
+
+// Automation & Workflows
+export * from './automation';
+
+// Communication & Collaboration Hub
+export * from './communicationHub';
+
 // Template and Category System
 export interface ChecklistTemplate {
   id: string;

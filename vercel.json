@@ -1,15 +1,24 @@
 {
   "version": 2,
-  "name": "prework-app",
+  "name": "pre-work-app-production",
+  "alias": ["app.preworkchecklist.com", "prework-app.vercel.app"],
+  "regions": ["iad1", "sfo1"],
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "outputDirectory": ".next"
+        "outputDirectory": ".next",
+        "buildCommand": "npm run build",
+        "installCommand": "npm ci"
       }
     }
   ],
+  "functions": {
+    "src/pages/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -17,7 +26,7 @@
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
       }
     },
     {
@@ -27,14 +36,8 @@
   ],
   "env": {
     "NODE_ENV": "production",
-    "NEXT_PUBLIC_APP_URL": "https://prework-app.vercel.app",
-    "NEXT_PUBLIC_API_URL": "https://api.prework-app.com"
-  },
-  "regions": ["iad1"],
-  "functions": {
-    "src/pages/api/**/*.ts": {
-      "maxDuration": 30
-    }
+    "NEXT_PUBLIC_APP_URL": "https://app.preworkchecklist.com",
+    "NEXT_PUBLIC_API_URL": "https://api.preworkchecklist.com"
   },
   "headers": [
     {

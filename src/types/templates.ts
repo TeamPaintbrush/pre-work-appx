@@ -264,5 +264,26 @@ export interface IndustrySubcategory {
   templates: ChecklistTemplate[];
 }
 
+// AWS Storage Types
+export interface StoredTemplate extends Omit<ChecklistTemplate, 'createdAt' | 'lastModified'> {
+  createdAt: string;
+  lastModified: string;
+  updatedAt?: string;
+  userId: string;
+  isPublic?: boolean;
+}
+
+export interface TemplateSearchOptions {
+  workspaceId?: string;
+  category?: string;
+  tags?: string[];
+  status?: 'draft' | 'published' | 'archived';
+  author?: string;
+  organization?: string;
+  limit?: number;
+  sortBy?: 'title' | 'createdAt' | 'lastModified' | 'category';
+  sortOrder?: 'asc' | 'desc';
+}
+
 // Import base types
 import { ChecklistTemplate, TemplateCategory } from './index';

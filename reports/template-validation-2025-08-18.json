@@ -1,0 +1,1822 @@
+{
+  "timestamp": "2025-08-18T07:18:05.688Z",
+  "summary": {
+    "totalTemplates": 128,
+    "validTemplates": 128,
+    "invalidTemplates": 0,
+    "warningCount": 0,
+    "errorCount": 0,
+    "successRate": "100.0%"
+  },
+  "templateCounts": {
+    "Healthcare Templates": 12,
+    "Construction Templates": 10,
+    "Manufacturing Templates": 10,
+    "Retail Templates": 10,
+    "Technology Templates": 10,
+    "Education Templates": 10,
+    "Finance Templates": 10,
+    "Legal Templates": 10,
+    "Marketing Templates": 10,
+    "HR Templates": 10,
+    "Cleaning Templates": 12,
+    "Painting Templates": 14,
+    "Total Expanded": 128
+  },
+  "warnings": [],
+  "errors": [],
+  "templates": [
+    {
+      "id": "patient-room-prep",
+      "name": "Patient Room Preparation",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 793,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "surgical-prep",
+      "name": "Surgical Preparation",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 812,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "medication-administration",
+      "name": "Medication Administration",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 835,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "patient-discharge",
+      "name": "Patient Discharge Process",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 844,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "emergency-response",
+      "name": "Emergency Response Protocol",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 836,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "infection-control",
+      "name": "Infection Control Protocol",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 842,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "vital-signs-check",
+      "name": "Vital Signs Assessment",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 785,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "patient-admission",
+      "name": "Patient Admission Process",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 814,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "wound-care",
+      "name": "Wound Care Protocol",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 790,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "lab-specimen-collection",
+      "name": "Laboratory Specimen Collection",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 843,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "patient-transport",
+      "name": "Patient Transport Protocol",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 820,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "nutrition-assessment",
+      "name": "Nutritional Assessment",
+      "category": "Healthcare & Medical",
+      "isValid": true,
+      "size": 840,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "site-safety-inspection",
+      "name": "Construction Site Safety Inspection",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 836,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "foundation-pour",
+      "name": "Foundation Pour Checklist",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 816,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "electrical-rough-in",
+      "name": "Electrical Rough-In Inspection",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 830,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "framing-inspection",
+      "name": "Framing Inspection",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 816,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "roofing-installation",
+      "name": "Roofing Installation",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 832,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "plumbing-rough-in",
+      "name": "Plumbing Rough-In",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 802,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "insulation-installation",
+      "name": "Insulation Installation",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 830,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "drywall-installation",
+      "name": "Drywall Installation",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 791,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "final-walkthrough",
+      "name": "Final Construction Walkthrough",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 819,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "hvac-installation",
+      "name": "HVAC System Installation",
+      "category": "Construction & Trade",
+      "isValid": true,
+      "size": 801,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "production-line-setup",
+      "name": "Production Line Setup",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 852,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "quality-control-check",
+      "name": "Quality Control Inspection",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 852,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "machine-maintenance",
+      "name": "Preventive Machine Maintenance",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 861,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "inventory-management",
+      "name": "Raw Material Inventory Check",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 829,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "safety-protocol",
+      "name": "Manufacturing Safety Protocol",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 814,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "packaging-process",
+      "name": "Product Packaging Process",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 823,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "shift-handover",
+      "name": "Shift Handover Process",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 820,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "waste-management",
+      "name": "Manufacturing Waste Management",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 824,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "equipment-changeover",
+      "name": "Production Equipment Changeover",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 861,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "environmental-monitoring",
+      "name": "Environmental Monitoring",
+      "category": "Manufacturing & Quality",
+      "isValid": true,
+      "size": 877,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "store-opening",
+      "name": "Daily Store Opening Checklist",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 797,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "inventory-count",
+      "name": "Inventory Stock Count",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 805,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "customer-service",
+      "name": "Customer Service Standards",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 830,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "cash-register",
+      "name": "Cash Register Operation",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 792,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "merchandise-display",
+      "name": "Merchandise Display Setup",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 828,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "store-cleaning",
+      "name": "Store Cleaning Protocol",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 796,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "security-check",
+      "name": "Store Security Inspection",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 810,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "price-verification",
+      "name": "Price Tag Verification",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 790,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "sales-promotion",
+      "name": "Sales Promotion Setup",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 816,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "store-closing",
+      "name": "Daily Store Closing Checklist",
+      "category": "Retail & Commerce",
+      "isValid": true,
+      "size": 793,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "software-deployment",
+      "name": "Software Deployment Process",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 844,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "system-backup",
+      "name": "System Backup Procedure",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 798,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "security-audit",
+      "name": "IT Security Audit",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 805,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "database-maintenance",
+      "name": "Database Maintenance",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 842,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "server-monitoring",
+      "name": "Server Health Monitoring",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 822,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "network-configuration",
+      "name": "Network Configuration Setup",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 826,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "user-account-management",
+      "name": "User Account Management",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 816,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "software-updates",
+      "name": "Software Update Process",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 797,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "incident-response",
+      "name": "IT Incident Response",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 816,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "cloud-migration",
+      "name": "Cloud Migration Process",
+      "category": "Technology & Development",
+      "isValid": true,
+      "size": 826,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "lesson-planning",
+      "name": "Lesson Plan Preparation",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 819,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "student-assessment",
+      "name": "Student Assessment Process",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 821,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "classroom-setup",
+      "name": "Classroom Environment Setup",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 823,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "parent-conference",
+      "name": "Parent-Teacher Conference",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 839,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "curriculum-development",
+      "name": "Curriculum Development",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 851,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "student-support",
+      "name": "Student Support Services",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 826,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "technology-integration",
+      "name": "Educational Technology Integration",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 850,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "field-trip-planning",
+      "name": "Field Trip Organization",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 838,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "special-needs-support",
+      "name": "Special Needs Student Support",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 865,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "professional-development",
+      "name": "Teacher Professional Development",
+      "category": "Education & Training",
+      "isValid": true,
+      "size": 864,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "month-end-close",
+      "name": "Month-End Financial Close",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 822,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "invoice-processing",
+      "name": "Invoice Processing",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 805,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "payroll-processing",
+      "name": "Payroll Processing",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 815,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "budget-review",
+      "name": "Budget Review and Analysis",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 815,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "tax-preparation",
+      "name": "Tax Return Preparation",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 801,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "audit-preparation",
+      "name": "Audit Preparation",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 825,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "cash-flow-analysis",
+      "name": "Cash Flow Analysis",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 810,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "expense-approval",
+      "name": "Expense Approval Process",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 830,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "financial-reporting",
+      "name": "Financial Report Generation",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 833,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "investment-review",
+      "name": "Investment Portfolio Review",
+      "category": "Finance & Accounting",
+      "isValid": true,
+      "size": 838,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "contract-review",
+      "name": "Contract Review Process",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 804,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "compliance-audit",
+      "name": "Compliance Audit Checklist",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 827,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "intellectual-property",
+      "name": "Intellectual Property Filing",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 816,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "employment-law",
+      "name": "Employment Law Compliance",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 812,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "privacy-policy",
+      "name": "Privacy Policy Update",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 806,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "litigation-prep",
+      "name": "Litigation Preparation",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 797,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "corporate-governance",
+      "name": "Corporate Governance Review",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 824,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "vendor-agreements",
+      "name": "Vendor Agreement Review",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 817,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "regulatory-filing",
+      "name": "Regulatory Filing Process",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 804,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "merger-acquisition",
+      "name": "Merger & Acquisition Due Diligence",
+      "category": "Legal & Compliance",
+      "isValid": true,
+      "size": 811,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "product-launch",
+      "name": "Product Launch Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 834,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "social-media-campaign",
+      "name": "Social Media Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 814,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "email-marketing",
+      "name": "Email Marketing Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 820,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "lead-generation",
+      "name": "Lead Generation Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 810,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "brand-awareness",
+      "name": "Brand Awareness Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 802,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "content-marketing",
+      "name": "Content Marketing Strategy",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 809,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "seo-optimization",
+      "name": "SEO Optimization Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 807,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "trade-show-marketing",
+      "name": "Trade Show Marketing",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 821,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "customer-retention",
+      "name": "Customer Retention Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 821,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "influencer-marketing",
+      "name": "Influencer Marketing Campaign",
+      "category": "Marketing & Sales",
+      "isValid": true,
+      "size": 852,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "employee-onboarding",
+      "name": "Employee Onboarding Process",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 803,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "performance-review",
+      "name": "Performance Review Process",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 826,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "recruitment-process",
+      "name": "Recruitment and Hiring",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 800,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "training-development",
+      "name": "Training and Development",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 795,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "employee-offboarding",
+      "name": "Employee Offboarding",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 811,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "benefits-enrollment",
+      "name": "Benefits Enrollment",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 814,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "disciplinary-action",
+      "name": "Disciplinary Action Process",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 826,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "workplace-safety",
+      "name": "Workplace Safety Training",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 803,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "compensation-review",
+      "name": "Compensation Review",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 807,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "diversity-inclusion",
+      "name": "Diversity & Inclusion Program",
+      "category": "Human Resources",
+      "isValid": true,
+      "size": 828,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0",
+        "createdBy": "system",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "deep-home-cleaning",
+      "name": "Deep Home Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1572,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "office-cleaning",
+      "name": "Office Deep Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 992,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "carpet-cleaning",
+      "name": "Professional Carpet Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1023,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "window-cleaning",
+      "name": "Professional Window Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1028,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "post-construction-cleaning",
+      "name": "Post-Construction Cleanup",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1044,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "move-in-cleaning",
+      "name": "Move-In Deep Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 998,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "move-out-cleaning",
+      "name": "Move-Out Deep Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 997,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "kitchen-deep-clean",
+      "name": "Kitchen Deep Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1032,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "bathroom-deep-clean",
+      "name": "Bathroom Deep Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1026,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "upholstery-cleaning",
+      "name": "Professional Upholstery Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1074,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "commercial-cleaning",
+      "name": "Commercial Space Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1051,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "air-duct-cleaning",
+      "name": "Air Duct System Cleaning",
+      "category": "Cleaning & Maintenance",
+      "isValid": true,
+      "size": 1042,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "interior-wall-painting",
+      "name": "Interior Wall Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1556,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "exterior-house-painting",
+      "name": "Exterior House Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1302,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "cabinet-painting",
+      "name": "Kitchen Cabinet Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1026,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "fence-painting",
+      "name": "Fence Painting & Staining",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1013,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "trim-painting",
+      "name": "Trim & Molding Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 983,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "deck-staining",
+      "name": "Deck Staining & Sealing",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1004,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "ceiling-painting",
+      "name": "Ceiling Painting Service",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1023,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "garage-floor-painting",
+      "name": "Garage Floor Epoxy Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1062,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "wallpaper-removal-painting",
+      "name": "Wallpaper Removal & Wall Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1087,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "metal-surface-painting",
+      "name": "Metal Surface Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1059,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "texture-painting",
+      "name": "Textured Wall Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1069,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "commercial-painting",
+      "name": "Commercial Building Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1086,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "touch-up-painting",
+      "name": "Paint Touch-Up Service",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1048,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    },
+    {
+      "id": "spray-painting",
+      "name": "Professional Spray Painting",
+      "category": "Painting & Decoration",
+      "isValid": true,
+      "size": 1056,
+      "sections": 1,
+      "metadata": {
+        "version": "1.0.0",
+        "createdBy": "system",
+        "lastModified": "2025-01-15T00:00:00.000Z",
+        "isBuiltIn": true
+      }
+    }
+  ]
+}

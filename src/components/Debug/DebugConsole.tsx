@@ -91,13 +91,25 @@ const DebugConsole: React.FC<DebugConsoleProps> = ({
 
     const createConsoleInterceptor = (type: 'log' | 'warn' | 'error' | 'info' | 'debug') => {
       return (...args: any[]) => {
-        // Call original method
-        originalConsoleRef.current[type](...args);
+        try {
+          // Call original method if it exists safely
+          const originalMethod = originalConsoleRef.current?.[type];
+          if (originalMethod && typeof originalMethod === 'function') {
+            originalMethod(...args);
+          } else if (console && console[type] && typeof console[type] === 'function') {
+            // Fallback to current console method
+            const currentMethod = console[type] as (...args: any[]) => void;
+            currentMethod(...args);
+          }
 
-        // Capture for our debug console
-        const message = args.map(arg => 
-          typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-        ).join(' ');
+          // Capture for our debug console
+          const message = args.map(arg => {
+            try {
+              return typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg);
+            } catch (e) {
+              return '[Object - Cannot Stringify]';
+            }
+          }).join(' ');
 
         const entryKey = `${type}-${message}`;
         const existingCount = entryCountRef.current.get(entryKey) || 0;
@@ -124,6 +136,12 @@ const DebugConsole: React.FC<DebugConsoleProps> = ({
           warningCount: type === 'warn' ? prev.warningCount + 1 : prev.warningCount,
           lastUpdate: new Date()
         }));
+        } catch (interceptorError) {
+          // Fallback if console interception fails
+          if (typeof console !== 'undefined' && console.error) {
+            console.error('DebugConsole interceptor error:', interceptorError);
+          }
+        }
       };
     };
 
@@ -136,11 +154,13 @@ const DebugConsole: React.FC<DebugConsoleProps> = ({
 
     // Cleanup on unmount
     return () => {
-      console.log = originalConsoleRef.current.log;
-      console.warn = originalConsoleRef.current.warn;
-      console.error = originalConsoleRef.current.error;
-      console.info = originalConsoleRef.current.info;
-      console.debug = originalConsoleRef.current.debug;
+      if (originalConsoleRef.current) {
+        console.log = originalConsoleRef.current.log;
+        console.warn = originalConsoleRef.current.warn;
+        console.error = originalConsoleRef.current.error;
+        console.info = originalConsoleRef.current.info;
+        console.debug = originalConsoleRef.current.debug;
+      }
     };
   }, [maxEntries]);
 

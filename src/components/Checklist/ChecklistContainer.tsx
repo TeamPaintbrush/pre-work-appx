@@ -4,7 +4,16 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { ChecklistContainerProps, ChecklistItem, ChecklistSection as ChecklistSectionType, ExportData, ComplianceReport } from '../../types';
 import { CLEANING_PREWORK_TEMPLATE, calculateProgress } from '../../data/presetChecklists';
 import { useEnhancedChecklist } from '../../hooks/useEnhancedChecklist';
+import { useEnhancedEnterpriseChecklist } from '../../hooks/useEnhancedEnterpriseChecklist';
 import { useComponentDebug } from '../../hooks/useDebugHooks';
+import { useEnterpriseContext } from '../Enterprise/EnterpriseProvider';
+import { FeatureGate } from '../AdvancedFeatures/FeatureToggleProvider';
+import { AIDashboard } from '../AI';
+import { 
+  SilentCustomFieldTracker, 
+  SilentTimeTracker, 
+  SilentProgressAnalytics 
+} from '../Enterprise/SilentEnterpriseComponents';
 import ChecklistSection from './ChecklistSection';
 import ProgressBar from './ProgressBar';
 import EnhancedProgressBar from '../Progress/EnhancedProgressBar';
@@ -23,8 +32,11 @@ const ChecklistContainer: React.FC<ChecklistContainerProps> = ({
 }) => {
   // Debug hooks
   const { logAction, reportError, addMetric } = useComponentDebug('ChecklistContainer');
+  
+  // Enterprise context (silent if not enabled)
+  const enterpriseContext = useEnterpriseContext();
 
-  // Use enhanced checklist hook
+  // Use enhanced checklist hook (original functionality)
   const {
     checklist,
     progress: enhancedProgress,
@@ -276,7 +288,13 @@ const ChecklistContainer: React.FC<ChecklistContainerProps> = ({
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <>
+      {/* Silent Enterprise Components - Invisible to user */}
+      <SilentProgressAnalytics 
+        progress={displayProgress.completedItems || 0} 
+        totalItems={displayProgress.totalItems || 0}
+      >
+        <div className="max-w-4xl mx-auto p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
@@ -525,6 +543,8 @@ const ChecklistContainer: React.FC<ChecklistContainerProps> = ({
         />
       </Modal>
     </div>
+      </SilentProgressAnalytics>
+    </>
   );
 };
 

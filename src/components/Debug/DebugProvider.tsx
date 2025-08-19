@@ -43,6 +43,19 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // Enhanced error logging with more context
+    console.error('💥 React Error Boundary Caught:', {
+      error: {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      },
+      errorInfo,
+      timestamp: new Date().toISOString(),
+      url: typeof window !== 'undefined' ? window.location.href : 'unknown',
+      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'unknown'
+    });
+    
     this.props.onError(error, errorInfo);
   }
 

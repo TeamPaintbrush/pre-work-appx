@@ -1,4 +1,5 @@
 import { PreWorkChecklist, ChecklistTemplate, TemplateCategory, ChecklistItem, ChecklistSection, TemplateSectionDefinition, TemplateItemDefinition } from '../types';
+import { ALL_EXPANDED_TEMPLATES, TEMPLATE_COUNT_SUMMARY } from './templates/expandedTemplates';
 
 // Template Categories - Professional & Industry Focus
 export const TEMPLATE_CATEGORIES: TemplateCategory[] = [
@@ -1086,4 +1087,21 @@ export const calculateProgress = (checklist: PreWorkChecklist) => {
 };
 
 export const presetChecklists = [CLEANING_PREWORK_TEMPLATE];
+
+// EXPANDED TEMPLATE LIBRARY - 149+ Professional Templates
+// Combine original templates with expanded industry-specific templates
+export const ALL_PRESET_TEMPLATES = [
+  ...PRESET_TEMPLATES, 
+  ...ALL_EXPANDED_TEMPLATES
+];
+
+// Combined template count summary
+export const COMBINED_TEMPLATE_COUNT = {
+  'Original Templates': PRESET_TEMPLATES.length,
+  ...TEMPLATE_COUNT_SUMMARY,
+  'Grand Total': PRESET_TEMPLATES.length + ALL_EXPANDED_TEMPLATES.length
+};
+
+// Export expanded template library for use in the app
 export const presetTemplates = [CLEANING_TEMPLATE];
+export { TEMPLATE_COUNT_SUMMARY };

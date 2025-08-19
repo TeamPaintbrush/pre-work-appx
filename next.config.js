@@ -1,18 +1,38 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: '/pre-work-appx',
-  assetPrefix: '/pre-work-appx/',
+  // AWS Amplify configuration - supports both static and dynamic content
   trailingSlash: true,
   reactStrictMode: true,
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+  
+  // Optimize chunk loading to prevent ChunkLoadError
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
+      // In development, prevent chunk loading issues
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+            },
+          },
+        },
+      };
+    }
+    return config;
+  },
   images: {
-    unoptimized: true, // Required for static export
     domains: ['localhost'], // Add any external image domains you plan to use
     formats: ['image/webp', 'image/avif'],
   },
-  // Note: rewrites, headers, and API routes are not supported in static export
-  // Configure static file serving for uploads and saved folders
-  /*
+  
+  // AWS Amplify supports rewrites and API routes
   async rewrites() {
     return [
       {
@@ -25,6 +45,7 @@ const nextConfig = {
       },
     ];
   },
+  
   // Custom headers for better performance and security
   async headers() {
     return [
@@ -56,7 +77,6 @@ const nextConfig = {
       },
     ];
   },
-  */
   // Environment variables
   env: {
     CUSTOM_KEY: 'prework-app',

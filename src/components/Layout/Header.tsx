@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMobileDetection, useSwipeGesture, useLongPress, useVibration } from '../../hooks/useMobile';
+import { AdvancedFeaturesIconButton } from '../AdvancedFeatures/AdvancedFeaturesButton';
 
 interface HeaderProps {
   title?: string;
@@ -149,6 +150,9 @@ const Header: React.FC<HeaderProps> = ({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h10l-5-5 5 5v5" />
                 </svg>
               </motion.button>
+
+              {/* Advanced Features */}
+              <AdvancedFeaturesIconButton className={`${isTouch ? 'min-h-[44px] min-w-[44px]' : ''}`} />
 
               {/* Profile */}
               {showProfile && (

@@ -5,8 +5,11 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import ChecklistContainer from '../../components/Checklist/ChecklistContainer';
 import { PreWorkChecklist } from '../../types';
 import { createChecklistFromTemplate, validateTemplateForConversion } from '../../utils/templateUtils';
-import { PRESET_TEMPLATES } from '../../data/presetChecklists';
+import { ALL_PRESET_TEMPLATES } from '../../data/presetChecklists';
+import { TemplateIntegrationService } from '../../services/templates/TemplateIntegrationService';
 import Button from '../../components/UI/Button';
+import { ChecklistEnhancementOverlay } from '../../components/AdvancedFeatures/ChecklistEnhancementOverlay';
+import { FeatureGate } from '../../components/AdvancedFeatures/FeatureToggleProvider';
 
 const ChecklistPageContent = () => {
   const searchParams = useSearchParams();
@@ -37,8 +40,13 @@ const ChecklistPageContent = () => {
       setIsLoading(true);
       setError(null);
 
+      // Initialize template service if needed
+      const templateService = TemplateIntegrationService.getInstance();
+      await templateService.initialize();
+
       // Find the template in our database
-      const template = PRESET_TEMPLATES.find(t => t.id === templateId);
+      const allTemplates = templateService.getAllTemplates();
+      const template = allTemplates.find(t => t.id === templateId);
       
       if (!template) {
         setError(`Template with ID "${templateId}" not found`);
@@ -178,11 +186,101 @@ const ChecklistPageContent = () => {
 
       {/* Checklist Container */}
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <ChecklistContainer
-          initialChecklist={checklist}
-          onSave={handleSaveChecklist}
-          onExport={handleExportChecklist}
-        />
+        {/* Advanced Features Indicator */}
+        <FeatureGate feature="enableComments">
+          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg">
+            <div className="flex items-center space-x-3">
+              <div className="flex-shrink-0">
+                <span className="text-2xl">🚀</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-blue-900">Advanced Features Active</h3>
+                <p className="text-blue-700">
+                  Enhanced collaboration tools are now available. You can add comments, track time, 
+                  share files, and @mention team members on any checklist item.
+                </p>
+              </div>
+            </div>
+          </div>
+        </FeatureGate>
+
+        {/* Enhanced Checklist Experience */}
+        <div className="relative">
+          <ChecklistContainer
+            initialChecklist={checklist}
+            onSave={handleSaveChecklist}
+            onExport={handleExportChecklist}
+          />
+          
+          {/* Advanced Features Enhancement Overlay - positioned absolutely */}
+          <ChecklistEnhancementOverlay 
+            checklist={{
+              id: checklist.id,
+              name: checklist.title,
+              description: checklist.description || '',
+              category: { 
+                id: checklist.templateId || 'default', 
+                name: 'Checklist', 
+                description: 'Active Checklist',
+                isActive: true 
+              },
+              version: checklist.templateVersion || '1.0.0',
+              tags: ['active', 'checklist'],
+              isBuiltIn: false,
+              createdAt: checklist.createdAt || new Date(),
+              lastModified: checklist.lastModified || new Date(),
+              sections: checklist.sections.map(section => ({
+                id: section.id,
+                title: section.title,
+                description: section.description || '',
+                items: section.items.map(item => ({
+                  id: item.id,
+                  title: item.text,
+                  description: item.description || '',
+                  isRequired: item.isRequired,
+                  isOptional: item.isOptional || false,
+                  requiresPhoto: item.requiresPhoto || false,
+                  requiresNotes: item.requiresNotes || false,
+                  tags: item.tags || [],
+                  order: 0
+                })),
+                order: 0,
+                isOptional: false
+              }))
+            }}
+            items={checklist.sections.flatMap(section => section.items)}
+            onItemUpdate={(itemId, updates) => {
+              console.log('Advanced feature update for item:', itemId, updates);
+              // Handle advanced feature updates here
+            }}
+            className="absolute inset-0 pointer-events-none"
+          />
+        </div>
+
+        {/* Advanced Analytics Panel */}
+        <FeatureGate feature="enableAdvancedAnalytics">
+          <div className="mt-8 p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Advanced Analytics</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="text-center p-4 bg-blue-50 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600">{Math.round(checklist.progress)}%</div>
+                <div className="text-sm text-blue-700">Completion Rate</div>
+              </div>
+              <div className="text-center p-4 bg-green-50 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">
+                  {checklist.sections.reduce((total, section) => total + section.items.filter(item => item.isCompleted).length, 0)}
+                </div>
+                <div className="text-sm text-green-700">Items Completed</div>
+              </div>
+              <div className="text-center p-4 bg-purple-50 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600">
+                  {checklist.sections.length}
+                </div>
+                <div className="text-sm text-purple-700">Active Sections</div>
+              </div>
+            </div>
+          </div>
+        </FeatureGate>
       </div>
     </div>
   );

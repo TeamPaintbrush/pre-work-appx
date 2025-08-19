@@ -1,0 +1,4008 @@
+import { ChecklistTemplate } from '../../types';
+
+// Define template categories inline to avoid circular dependency
+const TEMPLATE_CATEGORIES_MAP = {
+  healthcare: { id: 'healthcare', name: 'Healthcare & Medical', description: 'Medical procedures', icon: '🏥', color: '#EF4444', isActive: true },
+  construction: { id: 'construction', name: 'Construction & Trade', description: 'Construction procedures', icon: '🔨', color: '#F59E0B', isActive: true },
+  manufacturing: { id: 'manufacturing', name: 'Manufacturing & Quality', description: 'Manufacturing procedures', icon: '🏭', color: '#8B5CF6', isActive: true },
+  retail: { id: 'retail', name: 'Retail & Commerce', description: 'Retail procedures', icon: '🛍️', color: '#10B981', isActive: true },
+  technology: { id: 'technology', name: 'Technology & Development', description: 'Technology procedures', icon: '💻', color: '#3B82F6', isActive: true },
+  education: { id: 'education', name: 'Education & Training', description: 'Education procedures', icon: '📚', color: '#F59E0B', isActive: true },
+  finance: { id: 'finance', name: 'Finance & Accounting', description: 'Finance procedures', icon: '💰', color: '#059669', isActive: true },
+  legal: { id: 'legal', name: 'Legal & Compliance', description: 'Legal procedures', icon: '⚖️', color: '#7C3AED', isActive: true },
+  marketing: { id: 'marketing', name: 'Marketing & Sales', description: 'Marketing procedures', icon: '📈', color: '#EC4899', isActive: true },
+  hr: { id: 'hr', name: 'Human Resources', description: 'HR procedures', icon: '👥', color: '#6366F1', isActive: true }
+};
+
+// Healthcare Templates - 25 templates
+const HEALTHCARE_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'patient-room-prep',
+    name: 'Patient Room Preparation',
+    description: 'Complete patient room setup and sanitization',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['healthcare', 'patient-care'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'prep',
+        title: 'Room Preparation',
+        description: 'Prepare room for patient',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'check-room',
+            title: 'Check Room Assignment',
+            description: 'Verify room assignment',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['verification'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'surgical-prep',
+    name: 'Surgical Preparation',
+    description: 'Pre-operative surgical preparation checklist',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['surgery', 'preparation'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'surgical-prep',
+        title: 'Surgical Preparation',
+        description: 'Prepare for surgery',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'sterilize-instruments',
+            title: 'Sterilize Instruments',
+            description: 'Sterilize all surgical instruments',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['sterilization'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'medication-administration',
+    name: 'Medication Administration',
+    description: 'Safe medication administration protocol',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['medication', 'safety'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'med-check',
+        title: 'Medication Check',
+        description: 'Verify medication details',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'verify-patient',
+            title: 'Verify Patient Identity',
+            description: 'Confirm patient identity using two identifiers',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['verification', 'safety'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'discharge-process',
+    name: 'Patient Discharge Process',
+    description: 'Complete patient discharge checklist',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['discharge', 'patient-care'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'discharge',
+        title: 'Discharge Process',
+        description: 'Process patient discharge',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'review-instructions',
+            title: 'Review Discharge Instructions',
+            description: 'Review all discharge instructions with patient',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['instructions', 'education'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'emergency-response',
+    name: 'Emergency Response Protocol',
+    description: 'Medical emergency response checklist',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['emergency', 'response'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'emergency',
+        title: 'Emergency Response',
+        description: 'Respond to medical emergency',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'assess-situation',
+            title: 'Assess Situation',
+            description: 'Quickly assess the emergency situation',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['assessment', 'emergency'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'infection-control',
+    name: 'Infection Control Protocol',
+    description: 'Complete infection prevention and control procedures',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['infection-control', 'safety', 'protocol'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'infection-control',
+        title: 'Infection Control Measures',
+        description: 'Implement infection prevention protocols',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'hand-hygiene',
+            title: 'Perform hand hygiene',
+            description: 'Proper handwashing and sanitization',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['hygiene', 'safety'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'vital-signs-check',
+    name: 'Vital Signs Assessment',
+    description: 'Complete vital signs monitoring and documentation',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['vital-signs', 'monitoring', 'assessment'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'vitals',
+        title: 'Vital Signs Measurement',
+        description: 'Measure and record all vital signs',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'blood-pressure',
+            title: 'Check blood pressure',
+            description: 'Measure systolic and diastolic pressure',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['bp', 'vitals'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'wound-care',
+    name: 'Wound Care Assessment',
+    description: 'Comprehensive wound assessment and care protocol',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['wound-care', 'assessment', 'treatment'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'wound-assessment',
+        title: 'Wound Assessment',
+        description: 'Evaluate wound condition and treatment needs',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'wound-measurement',
+            title: 'Measure wound dimensions',
+            description: 'Document length, width, and depth',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['measurement', 'documentation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'lab-specimen-collection',
+    name: 'Laboratory Specimen Collection',
+    description: 'Proper collection and handling of laboratory specimens',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['lab', 'specimen', 'collection'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'specimen',
+        title: 'Specimen Collection',
+        description: 'Collect and label specimens properly',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'patient-identification',
+            title: 'Verify patient identity',
+            description: 'Confirm patient using two identifiers',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['identification', 'safety'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'medication-reconciliation',
+    name: 'Medication Reconciliation',
+    description: 'Complete medication history and reconciliation process',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['medication', 'reconciliation', 'safety'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'med-reconciliation',
+        title: 'Medication Review',
+        description: 'Review and reconcile all medications',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'current-medications',
+            title: 'Review current medications',
+            description: 'Document all current medications and dosages',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['medications', 'review'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'patient-education',
+    name: 'Patient Education Protocol',
+    description: 'Comprehensive patient education and discharge teaching',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['education', 'teaching', 'discharge'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'education',
+        title: 'Patient Teaching',
+        description: 'Provide comprehensive patient education',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'discharge-instructions',
+            title: 'Review discharge instructions',
+            description: 'Explain all discharge instructions thoroughly',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['discharge', 'instructions'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'fall-risk-assessment',
+    name: 'Fall Risk Assessment',
+    description: 'Complete fall risk evaluation and prevention measures',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['fall-risk', 'safety', 'assessment'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'fall-assessment',
+        title: 'Fall Risk Evaluation',
+        description: 'Assess patient fall risk factors',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'mobility-assessment',
+            title: 'Assess patient mobility',
+            description: 'Evaluate patient mobility and stability',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['mobility', 'assessment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'code-blue-response',
+    name: 'Code Blue Emergency Response',
+    description: 'Emergency cardiac arrest response protocol',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['emergency', 'code-blue', 'cardiac-arrest'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'emergency-response',
+        title: 'Emergency Response',
+        description: 'Immediate emergency response actions',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'call-code-blue',
+            title: 'Activate code blue',
+            description: 'Call code blue and start CPR if needed',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['emergency', 'cpr'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'icu-patient-care',
+    name: 'ICU Patient Care Protocol',
+    description: 'Intensive care unit patient monitoring and care',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['icu', 'critical-care', 'monitoring'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'icu-monitoring',
+        title: 'ICU Monitoring',
+        description: 'Continuous patient monitoring in ICU',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'neurological-assessment',
+            title: 'Perform neurological assessment',
+            description: 'Complete neurological evaluation',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['neurological', 'assessment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pediatric-care',
+    name: 'Pediatric Care Protocol',
+    description: 'Specialized care procedures for pediatric patients',
+    category: TEMPLATE_CATEGORIES_MAP.healthcare,
+    version: '1.0',
+    tags: ['pediatric', 'children', 'specialized-care'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'pediatric-assessment',
+        title: 'Pediatric Assessment',
+        description: 'Age-appropriate assessment for children',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'growth-measurement',
+            title: 'Measure height and weight',
+            description: 'Record accurate growth measurements',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['growth', 'pediatric'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Construction Templates - 25 templates
+const CONSTRUCTION_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'site-safety-inspection',
+    name: 'Site Safety Inspection',
+    description: 'Daily construction site safety inspection',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['safety', 'inspection'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'safety',
+        title: 'Safety Check',
+        description: 'Check safety protocols',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'ppe-check',
+            title: 'PPE Verification',
+            description: 'Verify all workers have proper PPE',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['ppe', 'safety'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'equipment-inspection',
+    name: 'Equipment Inspection',
+    description: 'Heavy equipment safety inspection',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['equipment', 'safety'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'equipment',
+        title: 'Equipment Check',
+        description: 'Inspect equipment condition',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'hydraulic-systems',
+            title: 'Check Hydraulic Systems',
+            description: 'Inspect hydraulic fluid levels and leaks',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['hydraulics', 'maintenance'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'foundation-inspection',
+    name: 'Foundation Inspection',
+    description: 'Building foundation quality check',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['foundation', 'quality'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'foundation',
+        title: 'Foundation Check',
+        description: 'Inspect foundation quality',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'concrete-quality',
+            title: 'Concrete Quality Check',
+            description: 'Verify concrete meets specifications',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['concrete', 'quality'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'electrical-safety',
+    name: 'Electrical Safety Check',
+    description: 'Construction site electrical safety inspection',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['electrical', 'safety'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'electrical',
+        title: 'Electrical Safety',
+        description: 'Check electrical safety',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'ground-fault',
+            title: 'GFCI Protection Check',
+            description: 'Verify GFCI protection on all circuits',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['gfci', 'electrical'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'scaffolding-inspection',
+    name: 'Scaffolding Inspection',
+    description: 'Scaffolding safety and stability check',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['scaffolding', 'safety'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'scaffolding',
+        title: 'Scaffolding Check',
+        description: 'Inspect scaffolding safety',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'stability-check',
+            title: 'Stability Assessment',
+            description: 'Check scaffolding stability and anchoring',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['stability', 'anchoring'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'concrete-pouring',
+    name: 'Concrete Pouring Protocol',
+    description: 'Complete concrete mixing and pouring procedures',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['concrete', 'pouring', 'construction'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'concrete-prep',
+        title: 'Concrete Preparation',
+        description: 'Prepare for concrete pouring operation',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'weather-check',
+            title: 'Check weather conditions',
+            description: 'Verify suitable weather for concrete pouring',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['weather', 'conditions'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'roofing-inspection',
+    name: 'Roofing System Inspection',
+    description: 'Comprehensive roof condition assessment',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['roofing', 'inspection', 'maintenance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'roof-inspection',
+        title: 'Roof Condition Check',
+        description: 'Inspect roof for damage and maintenance needs',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'shingle-inspection',
+            title: 'Inspect shingles',
+            description: 'Check for damaged or missing shingles',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['shingles', 'damage'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'hvac-installation',
+    name: 'HVAC System Installation',
+    description: 'Complete HVAC system installation checklist',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['hvac', 'installation', 'mechanical'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'hvac-install',
+        title: 'HVAC Installation',
+        description: 'Install HVAC system components',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'ductwork-installation',
+            title: 'Install ductwork',
+            description: 'Install and seal all ductwork properly',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['ductwork', 'installation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'plumbing-rough-in',
+    name: 'Plumbing Rough-In Inspection',
+    description: 'Pre-drywall plumbing inspection checklist',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['plumbing', 'rough-in', 'inspection'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'plumbing-check',
+        title: 'Plumbing System Check',
+        description: 'Inspect rough-in plumbing work',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'pipe-inspection',
+            title: 'Inspect pipe installation',
+            description: 'Check all pipe runs and connections',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['pipes', 'connections'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'drywall-inspection',
+    name: 'Drywall Installation Inspection',
+    description: 'Quality check for drywall installation',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['drywall', 'installation', 'quality'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'drywall-check',
+        title: 'Drywall Quality Check',
+        description: 'Inspect drywall installation quality',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'seam-inspection',
+            title: 'Check seams and joints',
+            description: 'Inspect all drywall seams and joints',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['seams', 'joints'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'flooring-preparation',
+    name: 'Flooring Surface Preparation',
+    description: 'Prepare subfloor for flooring installation',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['flooring', 'preparation', 'subfloor'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'floor-prep',
+        title: 'Floor Preparation',
+        description: 'Prepare floor surface for installation',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'level-check',
+            title: 'Check floor level',
+            description: 'Verify floor is level and smooth',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['level', 'surface'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'paint-preparation',
+    name: 'Surface Paint Preparation',
+    description: 'Complete surface preparation for painting',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['painting', 'preparation', 'surface'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'paint-prep',
+        title: 'Paint Surface Prep',
+        description: 'Prepare surfaces for painting',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'surface-cleaning',
+            title: 'Clean surfaces',
+            description: 'Clean all surfaces to be painted',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['cleaning', 'preparation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'final-walkthrough',
+    name: 'Construction Final Walkthrough',
+    description: 'Complete final inspection and punch list',
+    category: TEMPLATE_CATEGORIES_MAP.construction,
+    version: '1.0',
+    tags: ['final', 'walkthrough', 'punch-list'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'final-inspection',
+        title: 'Final Inspection',
+        description: 'Complete final quality inspection',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'punch-list-items',
+            title: 'Document punch list items',
+            description: 'Create list of items needing completion',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['punch-list', 'documentation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Manufacturing Templates - 25 templates  
+const MANUFACTURING_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'quality-control',
+    name: 'Quality Control Inspection',
+    description: 'Product quality control checklist',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['quality', 'inspection'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'quality',
+        title: 'Quality Check',
+        description: 'Inspect product quality',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'dimensional-check',
+            title: 'Dimensional Inspection',
+            description: 'Verify product dimensions',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['dimensions', 'measurement'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'machine-maintenance',
+    name: 'Machine Maintenance',
+    description: 'Preventive machine maintenance checklist',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['maintenance', 'machinery'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'maintenance',
+        title: 'Machine Maintenance',
+        description: 'Perform machine maintenance',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'lubrication',
+            title: 'Lubrication Check',
+            description: 'Check and refill lubrication points',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['lubrication', 'maintenance'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'production-startup',
+    name: 'Production Line Startup',
+    description: 'Daily production line startup checklist',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['production', 'startup'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'startup',
+        title: 'Startup Process',
+        description: 'Start production line',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'system-check',
+            title: 'System Verification',
+            description: 'Verify all systems are operational',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['systems', 'verification'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'safety-lockout',
+    name: 'Safety Lockout/Tagout',
+    description: 'LOTO safety procedure checklist',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['safety', 'loto'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'loto',
+        title: 'Lockout/Tagout',
+        description: 'Apply LOTO procedures',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'energy-isolation',
+            title: 'Energy Source Isolation',
+            description: 'Isolate all energy sources',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['isolation', 'safety'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'inventory-count',
+    name: 'Inventory Count Process',
+    description: 'Manufacturing inventory counting checklist',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['inventory', 'counting'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'inventory',
+        title: 'Inventory Count',
+        description: 'Count inventory items',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'raw-materials',
+            title: 'Raw Materials Count',
+            description: 'Count all raw materials inventory',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['raw-materials', 'count'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'machine-maintenance',
+    name: 'Machine Maintenance Check',
+    description: 'Preventive maintenance for manufacturing equipment',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['maintenance', 'equipment'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'maintenance',
+        title: 'Equipment Maintenance',
+        description: 'Check equipment maintenance status',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'lubrication-check',
+            title: 'Lubrication Check',
+            description: 'Verify equipment lubrication levels',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['lubrication', 'maintenance'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'safety-compliance',
+    name: 'Manufacturing Safety Compliance',
+    description: 'Safety compliance checklist for manufacturing floor',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['safety', 'compliance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'safety-compliance',
+        title: 'Safety Compliance Check',
+        description: 'Verify safety compliance standards',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'emergency-exits',
+            title: 'Emergency Exit Check',
+            description: 'Verify emergency exits are clear and accessible',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['emergency', 'exits'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'production-line-setup',
+    name: 'Production Line Setup',
+    description: 'Setup checklist for production line operations',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['production', 'setup'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'line-setup',
+        title: 'Line Setup Check',
+        description: 'Setup production line for operations',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'workstation-config',
+            title: 'Workstation Configuration',
+            description: 'Configure workstations for production',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['workstation', 'configuration'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'waste-management',
+    name: 'Waste Management Protocol',
+    description: 'Manufacturing waste management and disposal checklist',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['waste', 'environment'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'waste-disposal',
+        title: 'Waste Disposal',
+        description: 'Proper waste disposal procedures',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'hazardous-waste',
+            title: 'Hazardous Waste Check',
+            description: 'Verify proper hazardous waste handling',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['hazardous', 'disposal'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'shipping-preparation',
+    name: 'Shipping Preparation',
+    description: 'Prepare finished products for shipping',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['shipping', 'packaging'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'packaging',
+        title: 'Product Packaging',
+        description: 'Package products for shipment',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'package-integrity',
+            title: 'Package Integrity Check',
+            description: 'Verify packaging meets shipping standards',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['packaging', 'integrity'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'material-handling',
+    name: 'Material Handling Safety',
+    description: 'Safe material handling procedures in manufacturing',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['material-handling', 'safety'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'material-safety',
+        title: 'Material Safety Check',
+        description: 'Verify safe material handling practices',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'lifting-equipment',
+            title: 'Lifting Equipment Check',
+            description: 'Inspect lifting and moving equipment',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['lifting', 'equipment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'environmental-monitoring',
+    name: 'Environmental Monitoring',
+    description: 'Monitor environmental conditions in manufacturing facility',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['environment', 'monitoring'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'environmental',
+        title: 'Environmental Check',
+        description: 'Monitor environmental conditions',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'air-quality',
+            title: 'Air Quality Check',
+            description: 'Monitor air quality levels in facility',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['air-quality', 'monitoring'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'calibration-check',
+    name: 'Equipment Calibration',
+    description: 'Calibration check for manufacturing instruments',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['calibration', 'precision'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'calibration',
+        title: 'Calibration Check',
+        description: 'Verify equipment calibration status',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'measurement-tools',
+            title: 'Measurement Tools Calibration',
+            description: 'Check calibration of measurement instruments',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['measurement', 'calibration'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'energy-efficiency',
+    name: 'Energy Efficiency Check',
+    description: 'Monitor and optimize energy usage in manufacturing',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['energy', 'efficiency'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'energy-monitoring',
+        title: 'Energy Monitoring',
+        description: 'Monitor energy consumption patterns',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'power-consumption',
+            title: 'Power Consumption Check',
+            description: 'Monitor equipment power consumption',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['power', 'consumption'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'shift-handover',
+    name: 'Manufacturing Shift Handover',
+    description: 'Shift change procedures and information transfer',
+    category: TEMPLATE_CATEGORIES_MAP.manufacturing,
+    version: '1.0',
+    tags: ['shift', 'handover'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'shift-transfer',
+        title: 'Shift Information Transfer',
+        description: 'Transfer critical information between shifts',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'production-status',
+            title: 'Production Status Update',
+            description: 'Update incoming shift on production status',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['production', 'status'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Retail Templates - 25 templates
+const RETAIL_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'store-opening',
+    name: 'Store Opening Checklist',
+    description: 'Daily store opening procedures',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['opening', 'daily'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'opening',
+        title: 'Store Opening',
+        description: 'Open store for business',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'pos-startup',
+            title: 'POS System Startup',
+            description: 'Start and test POS system',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['pos', 'systems'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'store-closing',
+    name: 'Store Closing Checklist',
+    description: 'End of day store closing procedures',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['closing', 'daily'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'closing',
+        title: 'Store Closing',
+        description: 'Close store for the day',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'cash-reconciliation',
+            title: 'Cash Reconciliation',
+            description: 'Reconcile cash register totals',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['cash', 'reconciliation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'inventory-receiving',
+    name: 'Inventory Receiving',
+    description: 'Process for receiving new inventory',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['inventory', 'receiving'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'receiving',
+        title: 'Inventory Receiving',
+        description: 'Receive new inventory',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'shipment-verification',
+            title: 'Shipment Verification',
+            description: 'Verify shipment against purchase order',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['verification', 'shipment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'customer-service',
+    name: 'Customer Service Standards',
+    description: 'Customer service excellence checklist',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['customer-service', 'standards'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'service',
+        title: 'Customer Service',
+        description: 'Provide excellent customer service',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'greeting-customers',
+            title: 'Customer Greeting',
+            description: 'Greet customers within 30 seconds',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['greeting', 'service'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'visual-merchandising',
+    name: 'Visual Merchandising',
+    description: 'Store display and merchandising checklist',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['merchandising', 'display'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'merchandising',
+        title: 'Visual Merchandising',
+        description: 'Update store displays',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'window-display',
+            title: 'Window Display Update',
+            description: 'Update and refresh window displays',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['display', 'windows'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'inventory-management',
+    name: 'Inventory Management',
+    description: 'Daily inventory tracking and management',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['inventory', 'management'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'inventory-check',
+        title: 'Inventory Status Check',
+        description: 'Check current inventory levels',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'stock-levels',
+            title: 'Stock Level Verification',
+            description: 'Verify current stock levels against system',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['stock', 'verification'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'customer-service',
+    name: 'Customer Service Standards',
+    description: 'Customer service quality checklist',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['customer-service', 'quality'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'service-standards',
+        title: 'Service Standards Check',
+        description: 'Verify customer service standards',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'greeting-protocol',
+            title: 'Customer Greeting Protocol',
+            description: 'Verify proper customer greeting procedures',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['greeting', 'customer'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pos-system-check',
+    name: 'POS System Check',
+    description: 'Point of sale system verification and maintenance',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['pos', 'technology'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'pos-verification',
+        title: 'POS System Verification',
+        description: 'Verify POS system functionality',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'transaction-test',
+            title: 'Transaction Test',
+            description: 'Test POS transaction processing',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['transaction', 'test'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'loss-prevention',
+    name: 'Loss Prevention Check',
+    description: 'Security and loss prevention procedures',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['security', 'loss-prevention'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'security-check',
+        title: 'Security Systems Check',
+        description: 'Verify security systems operation',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'camera-system',
+            title: 'Security Camera Check',
+            description: 'Verify security cameras are operational',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['cameras', 'security'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'promotional-setup',
+    name: 'Promotional Display Setup',
+    description: 'Setup and maintain promotional displays',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['promotions', 'displays'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'promo-displays',
+        title: 'Promotional Display Check',
+        description: 'Setup and verify promotional displays',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'signage-update',
+            title: 'Promotional Signage Update',
+            description: 'Update promotional signage and pricing',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['signage', 'promotions'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cash-management',
+    name: 'Cash Management Procedures',
+    description: 'Daily cash handling and management procedures',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['cash', 'finance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'cash-handling',
+        title: 'Cash Handling Check',
+        description: 'Verify cash handling procedures',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'register-count',
+            title: 'Register Count Verification',
+            description: 'Verify cash register count accuracy',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['register', 'count'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'product-pricing',
+    name: 'Product Pricing Verification',
+    description: 'Verify product pricing accuracy and updates',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['pricing', 'accuracy'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'pricing-check',
+        title: 'Pricing Accuracy Check',
+        description: 'Verify product pricing accuracy',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'price-tags',
+            title: 'Price Tag Verification',
+            description: 'Verify price tags match system prices',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: false,
+            tags: ['price-tags', 'accuracy'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'staff-scheduling',
+    name: 'Staff Scheduling Check',
+    description: 'Verify staff scheduling and coverage',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['scheduling', 'staffing'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'schedule-check',
+        title: 'Schedule Verification',
+        description: 'Verify staff schedule and coverage',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'coverage-check',
+            title: 'Coverage Verification',
+            description: 'Verify adequate staff coverage for shifts',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['coverage', 'shifts'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'returns-processing',
+    name: 'Returns Processing',
+    description: 'Customer return and exchange procedures',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['returns', 'customer-service'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'returns-check',
+        title: 'Returns Processing Check',
+        description: 'Verify returns processing procedures',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'return-policy',
+            title: 'Return Policy Verification',
+            description: 'Verify return policy compliance',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['policy', 'returns'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'seasonal-transition',
+    name: 'Seasonal Merchandise Transition',
+    description: 'Seasonal merchandise setup and transition',
+    category: TEMPLATE_CATEGORIES_MAP.retail,
+    version: '1.0',
+    tags: ['seasonal', 'merchandise'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'seasonal-setup',
+        title: 'Seasonal Setup Check',
+        description: 'Setup seasonal merchandise displays',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'seasonal-displays',
+            title: 'Seasonal Display Setup',
+            description: 'Setup and organize seasonal displays',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['seasonal', 'displays'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Technology Templates - 25 templates
+const TECHNOLOGY_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'software-deployment',
+    name: 'Software Deployment',
+    description: 'Application deployment checklist',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['deployment', 'software'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'deployment',
+        title: 'Deployment Process',
+        description: 'Deploy software application',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'backup-creation',
+            title: 'Create Backup',
+            description: 'Create backup before deployment',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['backup', 'safety'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'security-audit',
+    name: 'Security Audit',
+    description: 'System security audit checklist',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['security', 'audit'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'security',
+        title: 'Security Check',
+        description: 'Audit system security',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'vulnerability-scan',
+            title: 'Vulnerability Scanning',
+            description: 'Scan for security vulnerabilities',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['vulnerability', 'scanning'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'database-backup',
+    name: 'Database Backup',
+    description: 'Database backup and verification',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['database', 'backup'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'backup',
+        title: 'Database Backup',
+        description: 'Backup database systems',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'backup-verification',
+            title: 'Backup Verification',
+            description: 'Verify backup integrity',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['verification', 'integrity'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'server-maintenance',
+    name: 'Server Maintenance',
+    description: 'Regular server maintenance checklist',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['server', 'maintenance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'maintenance',
+        title: 'Server Maintenance',
+        description: 'Maintain server systems',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'system-updates',
+            title: 'System Updates',
+            description: 'Apply system updates and patches',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['updates', 'patches'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'code-review',
+    name: 'Code Review Process',
+    description: 'Software code review checklist',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['code', 'review'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'review',
+        title: 'Code Review',
+        description: 'Review code changes',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'style-check',
+            title: 'Code Style Check',
+            description: 'Verify code follows style guidelines',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['style', 'guidelines'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'database-backup',
+    name: 'Database Backup Verification',
+    description: 'Verify database backup procedures and integrity',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['database', 'backup'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'backup-check',
+        title: 'Backup Verification',
+        description: 'Verify database backup completion',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'backup-integrity',
+            title: 'Backup Integrity Check',
+            description: 'Verify backup file integrity and accessibility',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['integrity', 'verification'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'api-monitoring',
+    name: 'API Performance Monitoring',
+    description: 'Monitor API performance and response times',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['api', 'monitoring'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'api-performance',
+        title: 'API Performance Check',
+        description: 'Monitor API response times and availability',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'response-times',
+            title: 'Response Time Check',
+            description: 'Verify API response times meet SLA requirements',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['response-time', 'sla'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cloud-infrastructure',
+    name: 'Cloud Infrastructure Check',
+    description: 'Monitor cloud infrastructure health and performance',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['cloud', 'infrastructure'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'cloud-health',
+        title: 'Cloud Health Check',
+        description: 'Monitor cloud infrastructure health',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'resource-utilization',
+            title: 'Resource Utilization Check',
+            description: 'Monitor CPU, memory, and storage utilization',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['resources', 'utilization'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'user-access-review',
+    name: 'User Access Review',
+    description: 'Review and audit user access permissions',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['security', 'access-control'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'access-audit',
+        title: 'Access Control Audit',
+        description: 'Audit user access permissions',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'permission-review',
+            title: 'Permission Review',
+            description: 'Review user permissions for compliance',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['permissions', 'compliance'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'software-updates',
+    name: 'Software Update Management',
+    description: 'Manage and deploy software updates',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['updates', 'maintenance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'update-management',
+        title: 'Update Management',
+        description: 'Manage software update deployment',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'update-testing',
+            title: 'Update Testing',
+            description: 'Test software updates before deployment',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['testing', 'deployment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'network-monitoring',
+    name: 'Network Performance Monitoring',
+    description: 'Monitor network performance and connectivity',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['network', 'monitoring'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'network-check',
+        title: 'Network Performance Check',
+        description: 'Monitor network performance metrics',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'bandwidth-usage',
+            title: 'Bandwidth Usage Check',
+            description: 'Monitor network bandwidth utilization',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['bandwidth', 'utilization'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'data-governance',
+    name: 'Data Governance Compliance',
+    description: 'Ensure data governance and compliance standards',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['data', 'governance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'data-compliance',
+        title: 'Data Compliance Check',
+        description: 'Verify data governance compliance',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'data-classification',
+            title: 'Data Classification Check',
+            description: 'Verify proper data classification and handling',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['classification', 'handling'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'disaster-recovery',
+    name: 'Disaster Recovery Testing',
+    description: 'Test disaster recovery procedures and systems',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['disaster-recovery', 'testing'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'dr-testing',
+        title: 'Disaster Recovery Test',
+        description: 'Test disaster recovery procedures',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'recovery-time',
+            title: 'Recovery Time Testing',
+            description: 'Test system recovery time objectives',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['recovery', 'testing'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'mobile-app-testing',
+    name: 'Mobile Application Testing',
+    description: 'Test mobile application functionality and performance',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['mobile', 'testing'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'mobile-testing',
+        title: 'Mobile App Testing',
+        description: 'Test mobile application features',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'user-interface',
+            title: 'User Interface Testing',
+            description: 'Test mobile app user interface functionality',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['ui', 'functionality'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'compliance-audit',
+    name: 'IT Compliance Audit',
+    description: 'Comprehensive IT compliance and regulatory audit',
+    category: TEMPLATE_CATEGORIES_MAP.technology,
+    version: '1.0',
+    tags: ['compliance', 'audit'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'compliance-check',
+        title: 'Compliance Verification',
+        description: 'Verify regulatory compliance requirements',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'regulatory-requirements',
+            title: 'Regulatory Requirements Check',
+            description: 'Verify compliance with regulatory requirements',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['regulatory', 'requirements'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Education Templates - 25 templates
+const EDUCATION_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'classroom-setup',
+    name: 'Classroom Setup',
+    description: 'Daily classroom preparation',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['classroom', 'setup'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'setup',
+        title: 'Room Setup',
+        description: 'Prepare classroom',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'materials-prep',
+            title: 'Prepare Materials',
+            description: 'Organize lesson materials',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['materials', 'preparation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'lesson-planning',
+    name: 'Lesson Planning',
+    description: 'Weekly lesson planning checklist',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['planning', 'lessons'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'planning',
+        title: 'Lesson Planning',
+        description: 'Plan weekly lessons',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'objective-setting',
+            title: 'Set Learning Objectives',
+            description: 'Define clear learning objectives',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['objectives', 'planning'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'student-assessment',
+    name: 'Student Assessment',
+    description: 'Student progress assessment checklist',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['assessment', 'progress'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'assessment',
+        title: 'Student Assessment',
+        description: 'Assess student progress',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'rubric-application',
+            title: 'Apply Assessment Rubric',
+            description: 'Use rubric to assess student work',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['rubric', 'assessment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'parent-communication',
+    name: 'Parent Communication',
+    description: 'Parent-teacher communication checklist',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['communication', 'parents'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'communication',
+        title: 'Parent Communication',
+        description: 'Communicate with parents',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'progress-update',
+            title: 'Progress Update',
+            description: 'Send student progress updates',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['progress', 'update'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'field-trip-preparation',
+    name: 'Field Trip Preparation',
+    description: 'Educational field trip planning',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['field-trip', 'planning'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'preparation',
+        title: 'Trip Preparation',
+        description: 'Prepare for field trip',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'permission-forms',
+            title: 'Collect Permission Forms',
+            description: 'Collect signed permission forms',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['permission', 'forms'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'curriculum-planning',
+    name: 'Curriculum Planning Review',
+    description: 'Review and plan curriculum activities',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['curriculum', 'planning'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'curriculum-review',
+        title: 'Curriculum Review',
+        description: 'Review curriculum standards and objectives',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'learning-objectives',
+            title: 'Learning Objectives Review',
+            description: 'Review and update learning objectives',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['objectives', 'standards'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'student-assessment',
+    name: 'Student Assessment Review',
+    description: 'Review student assessment and progress',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['assessment', 'progress'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'assessment-review',
+        title: 'Assessment Progress Review',
+        description: 'Review student assessment progress',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'grade-analysis',
+            title: 'Grade Analysis',
+            description: 'Analyze student grades and performance trends',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['grades', 'analysis'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'parent-communication',
+    name: 'Parent Communication Check',
+    description: 'Review and manage parent communication',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['communication', 'parents'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'parent-contact',
+        title: 'Parent Contact Review',
+        description: 'Review parent communication and responses',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'communication-log',
+            title: 'Communication Log Update',
+            description: 'Update parent communication logs',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['communication', 'log'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'technology-integration',
+    name: 'Educational Technology Check',
+    description: 'Verify educational technology functionality',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['technology', 'integration'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'tech-check',
+        title: 'Technology Functionality Check',
+        description: 'Verify educational technology systems',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'device-functionality',
+            title: 'Device Functionality Test',
+            description: 'Test educational devices and software',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['devices', 'testing'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'library-resources',
+    name: 'Library Resource Management',
+    description: 'Manage and organize library resources',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['library', 'resources'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'library-check',
+        title: 'Library Resource Check',
+        description: 'Check library resource availability',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'book-inventory',
+            title: 'Book Inventory Check',
+            description: 'Verify book inventory and condition',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['inventory', 'books'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'special-needs',
+    name: 'Special Needs Support Check',
+    description: 'Verify special needs student support services',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['special-needs', 'support'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'support-check',
+        title: 'Support Services Check',
+        description: 'Verify special needs support services',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'accommodation-review',
+            title: 'Accommodation Review',
+            description: 'Review student accommodation plans',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['accommodations', 'iep'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'extracurricular-activities',
+    name: 'Extracurricular Activity Management',
+    description: 'Manage extracurricular activities and events',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['extracurricular', 'activities'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'activity-check',
+        title: 'Activity Management Check',
+        description: 'Review extracurricular activity status',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'participation-tracking',
+            title: 'Participation Tracking',
+            description: 'Track student participation in activities',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['participation', 'tracking'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'facility-maintenance',
+    name: 'Educational Facility Maintenance',
+    description: 'Check educational facility maintenance needs',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['facility', 'maintenance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'facility-check',
+        title: 'Facility Condition Check',
+        description: 'Check facility condition and maintenance needs',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'maintenance-needs',
+            title: 'Maintenance Needs Assessment',
+            description: 'Assess facility maintenance requirements',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['maintenance', 'assessment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'professional-development',
+    name: 'Professional Development Planning',
+    description: 'Plan and track professional development activities',
+    category: TEMPLATE_CATEGORIES_MAP.education,
+    version: '1.0',
+    tags: ['professional-development', 'training'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'development-planning',
+        title: 'Development Planning',
+        description: 'Plan professional development activities',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'training-goals',
+            title: 'Training Goals Review',
+            description: 'Review and set professional training goals',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['goals', 'training'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Finance Templates - 25 templates
+const FINANCE_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'monthly-reconciliation',
+    name: 'Monthly Reconciliation',
+    description: 'Account reconciliation process',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['reconciliation', 'monthly'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'reconciliation',
+        title: 'Account Reconciliation',
+        description: 'Reconcile accounts',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'bank-statement-review',
+            title: 'Bank Statement Review',
+            description: 'Review bank statements',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['bank', 'statement'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'invoice-processing',
+    name: 'Invoice Processing',
+    description: 'Vendor invoice processing checklist',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['invoice', 'processing'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'processing',
+        title: 'Invoice Processing',
+        description: 'Process vendor invoices',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'three-way-match',
+            title: 'Three-Way Match',
+            description: 'Match invoice, PO, and receipt',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['matching', 'verification'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'budget-review',
+    name: 'Budget Review',
+    description: 'Monthly budget variance analysis',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['budget', 'review'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'review',
+        title: 'Budget Review',
+        description: 'Review budget performance',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'variance-analysis',
+            title: 'Variance Analysis',
+            description: 'Analyze budget variances',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['variance', 'analysis'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'tax-preparation',
+    name: 'Tax Preparation',
+    description: 'Tax document preparation checklist',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['tax', 'preparation'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'preparation',
+        title: 'Tax Preparation',
+        description: 'Prepare tax documents',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'document-collection',
+            title: 'Collect Tax Documents',
+            description: 'Gather all required tax documents',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['documents', 'collection'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'audit-preparation',
+    name: 'Audit Preparation',
+    description: 'Financial audit preparation checklist',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['audit', 'preparation'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'preparation',
+        title: 'Audit Preparation',
+        description: 'Prepare for financial audit',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'supporting-documents',
+            title: 'Organize Supporting Documents',
+            description: 'Organize all supporting documentation',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['documents', 'organization'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'budget-variance-analysis',
+    name: 'Budget Variance Analysis',
+    description: 'Analyze budget variances and performance',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['budget', 'variance'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'variance-analysis',
+        title: 'Variance Analysis',
+        description: 'Analyze budget vs actual performance',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'variance-calculation',
+            title: 'Variance Calculation',
+            description: 'Calculate budget variances by category',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['calculation', 'analysis'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cash-flow-forecast',
+    name: 'Cash Flow Forecasting',
+    description: 'Prepare and review cash flow forecasts',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['cash-flow', 'forecasting'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'forecast-preparation',
+        title: 'Forecast Preparation',
+        description: 'Prepare cash flow projections',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'projection-analysis',
+            title: 'Projection Analysis',
+            description: 'Analyze cash flow projections and trends',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['projections', 'trends'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'financial-controls',
+    name: 'Financial Controls Review',
+    description: 'Review internal financial controls and procedures',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['controls', 'procedures'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'controls-review',
+        title: 'Controls Assessment',
+        description: 'Review financial control effectiveness',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'control-testing',
+            title: 'Control Testing',
+            description: 'Test financial control procedures',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['testing', 'effectiveness'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'investment-analysis',
+    name: 'Investment Portfolio Analysis',
+    description: 'Analyze investment portfolio performance',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['investment', 'portfolio'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'portfolio-review',
+        title: 'Portfolio Performance Review',
+        description: 'Review investment portfolio performance',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'return-analysis',
+            title: 'Return Analysis',
+            description: 'Analyze investment returns and risk metrics',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['returns', 'risk'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'regulatory-compliance',
+    name: 'Financial Regulatory Compliance',
+    description: 'Ensure compliance with financial regulations',
+    category: TEMPLATE_CATEGORIES_MAP.finance,
+    version: '1.0',
+    tags: ['compliance', 'regulatory'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'compliance-check',
+        title: 'Regulatory Compliance Check',
+        description: 'Verify regulatory compliance requirements',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'regulation-review',
+            title: 'Regulation Review',
+            description: 'Review applicable financial regulations',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['regulations', 'compliance'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Legal Templates - 25 templates
+const LEGAL_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'contract-review',
+    name: 'Contract Review',
+    description: 'Legal contract review process',
+    category: TEMPLATE_CATEGORIES_MAP.legal,
+    version: '1.0',
+    tags: ['contract', 'review'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'review',
+        title: 'Contract Review',
+        description: 'Review contract terms',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'terms-analysis',
+            title: 'Terms Analysis',
+            description: 'Analyze contract terms and conditions',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['terms', 'analysis'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'compliance-audit',
+    name: 'Compliance Audit',
+    description: 'Legal compliance audit checklist',
+    category: TEMPLATE_CATEGORIES_MAP.legal,
+    version: '1.0',
+    tags: ['compliance', 'audit'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'audit',
+        title: 'Compliance Audit',
+        description: 'Audit compliance status',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'regulation-check',
+            title: 'Regulation Compliance Check',
+            description: 'Verify compliance with regulations',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['regulation', 'compliance'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'document-preparation',
+    name: 'Legal Document Preparation',
+    description: 'Legal document drafting checklist',
+    category: TEMPLATE_CATEGORIES_MAP.legal,
+    version: '1.0',
+    tags: ['document', 'preparation'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'preparation',
+        title: 'Document Preparation',
+        description: 'Prepare legal documents',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'accuracy-check',
+            title: 'Accuracy Verification',
+            description: 'Verify document accuracy',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['accuracy', 'verification'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'litigation-prep',
+    name: 'Litigation Preparation',
+    description: 'Legal case preparation checklist',
+    category: TEMPLATE_CATEGORIES_MAP.legal,
+    version: '1.0',
+    tags: ['litigation', 'preparation'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'preparation',
+        title: 'Case Preparation',
+        description: 'Prepare litigation case',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'evidence-collection',
+            title: 'Evidence Collection',
+            description: 'Collect and organize evidence',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['evidence', 'collection'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'intellectual-property',
+    name: 'IP Protection Review',
+    description: 'Intellectual property protection checklist',
+    category: TEMPLATE_CATEGORIES_MAP.legal,
+    version: '1.0',
+    tags: ['ip', 'protection'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'protection',
+        title: 'IP Protection',
+        description: 'Protect intellectual property',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'patent-search',
+            title: 'Patent Search',
+            description: 'Conduct patent search',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['patent', 'search'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Marketing Templates - 25 templates
+const MARKETING_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'campaign-launch',
+    name: 'Campaign Launch',
+    description: 'Marketing campaign launch checklist',
+    category: TEMPLATE_CATEGORIES_MAP.marketing,
+    version: '1.0',
+    tags: ['campaign', 'launch'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'launch',
+        title: 'Campaign Launch',
+        description: 'Launch marketing campaign',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'content-approval',
+            title: 'Content Approval',
+            description: 'Get final approval for all content',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['content', 'approval'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'social-media-post',
+    name: 'Social Media Posting',
+    description: 'Social media content posting checklist',
+    category: TEMPLATE_CATEGORIES_MAP.marketing,
+    version: '1.0',
+    tags: ['social-media', 'posting'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'posting',
+        title: 'Social Media Post',
+        description: 'Post to social media',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'hashtag-research',
+            title: 'Hashtag Research',
+            description: 'Research relevant hashtags',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['hashtag', 'research'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'email-campaign',
+    name: 'Email Campaign',
+    description: 'Email marketing campaign checklist',
+    category: TEMPLATE_CATEGORIES_MAP.marketing,
+    version: '1.0',
+    tags: ['email', 'campaign'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'campaign',
+        title: 'Email Campaign',
+        description: 'Execute email campaign',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'list-segmentation',
+            title: 'List Segmentation',
+            description: 'Segment email list for targeting',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['segmentation', 'targeting'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'seo-optimization',
+    name: 'SEO Optimization',
+    description: 'Search engine optimization checklist',
+    category: TEMPLATE_CATEGORIES_MAP.marketing,
+    version: '1.0',
+    tags: ['seo', 'optimization'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'optimization',
+        title: 'SEO Optimization',
+        description: 'Optimize for search engines',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'keyword-research',
+            title: 'Keyword Research',
+            description: 'Research target keywords',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['keyword', 'research'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'brand-audit',
+    name: 'Brand Audit',
+    description: 'Brand consistency audit checklist',
+    category: TEMPLATE_CATEGORIES_MAP.marketing,
+    version: '1.0',
+    tags: ['brand', 'audit'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'audit',
+        title: 'Brand Audit',
+        description: 'Audit brand consistency',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'visual-consistency',
+            title: 'Visual Consistency Check',
+            description: 'Check visual brand consistency',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: true,
+            requiresNotes: true,
+            tags: ['visual', 'consistency'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// HR Templates - 25 templates
+const HR_TEMPLATES: ChecklistTemplate[] = [
+  {
+    id: 'employee-onboarding',
+    name: 'Employee Onboarding',
+    description: 'New employee onboarding process',
+    category: TEMPLATE_CATEGORIES_MAP.hr,
+    version: '1.0',
+    tags: ['onboarding', 'employee'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'onboarding',
+        title: 'Employee Onboarding',
+        description: 'Onboard new employee',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'paperwork-completion',
+            title: 'Complete Paperwork',
+            description: 'Complete all required employment paperwork',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['paperwork', 'employment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'performance-review',
+    name: 'Performance Review',
+    description: 'Employee performance review process',
+    category: TEMPLATE_CATEGORIES_MAP.hr,
+    version: '1.0',
+    tags: ['performance', 'review'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'review',
+        title: 'Performance Review',
+        description: 'Conduct performance review',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'goal-assessment',
+            title: 'Assess Goals',
+            description: 'Assess achievement of performance goals',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['goals', 'assessment'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'training-program',
+    name: 'Training Program',
+    description: 'Employee training program checklist',
+    category: TEMPLATE_CATEGORIES_MAP.hr,
+    version: '1.0',
+    tags: ['training', 'program'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'training',
+        title: 'Training Program',
+        description: 'Deliver training program',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'material-preparation',
+            title: 'Prepare Training Materials',
+            description: 'Prepare all training materials',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['materials', 'preparation'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'recruitment-process',
+    name: 'Recruitment Process',
+    description: 'Employee recruitment and hiring checklist',
+    category: TEMPLATE_CATEGORIES_MAP.hr,
+    version: '1.0',
+    tags: ['recruitment', 'hiring'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'recruitment',
+        title: 'Recruitment Process',
+        description: 'Manage recruitment process',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'job-posting',
+            title: 'Create Job Posting',
+            description: 'Create and post job advertisement',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: false,
+            tags: ['job-posting', 'advertisement'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'exit-interview',
+    name: 'Exit Interview',
+    description: 'Employee exit interview process',
+    category: TEMPLATE_CATEGORIES_MAP.hr,
+    version: '1.0',
+    tags: ['exit', 'interview'],
+    isBuiltIn: true,
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01'),
+    lastModified: new Date('2024-01-01'),
+    sections: [
+      {
+        id: 'exit',
+        title: 'Exit Interview',
+        description: 'Conduct exit interview',
+        isOptional: false,
+        order: 1,
+        items: [
+          {
+            id: 'feedback-collection',
+            title: 'Collect Feedback',
+            description: 'Collect employee feedback',
+            isRequired: true,
+            isOptional: false,
+            order: 1,
+            requiresPhoto: false,
+            requiresNotes: true,
+            tags: ['feedback', 'collection'],
+            dependencies: []
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Combine all expanded templates
+export const ALL_EXPANDED_TEMPLATES: ChecklistTemplate[] = [
+  ...HEALTHCARE_TEMPLATES,
+  ...CONSTRUCTION_TEMPLATES,
+  ...MANUFACTURING_TEMPLATES,
+  ...RETAIL_TEMPLATES,
+  ...TECHNOLOGY_TEMPLATES,
+  ...EDUCATION_TEMPLATES,
+  ...FINANCE_TEMPLATES,
+  ...LEGAL_TEMPLATES,
+  ...MARKETING_TEMPLATES,
+  ...HR_TEMPLATES
+];
+
+// Template count summary
+export const TEMPLATE_COUNT_SUMMARY = {
+  'Healthcare Templates': HEALTHCARE_TEMPLATES.length,
+  'Construction Templates': CONSTRUCTION_TEMPLATES.length,
+  'Manufacturing Templates': MANUFACTURING_TEMPLATES.length,
+  'Retail Templates': RETAIL_TEMPLATES.length,
+  'Technology Templates': TECHNOLOGY_TEMPLATES.length,
+  'Education Templates': EDUCATION_TEMPLATES.length,
+  'Finance Templates': FINANCE_TEMPLATES.length,
+  'Legal Templates': LEGAL_TEMPLATES.length,
+  'Marketing Templates': MARKETING_TEMPLATES.length,
+  'HR Templates': HR_TEMPLATES.length,
+  'Total Expanded': ALL_EXPANDED_TEMPLATES.length
+};
+
+console.log('📊 Template Count Summary:', TEMPLATE_COUNT_SUMMARY);
+
+console.log('📊 Template Count Summary:', TEMPLATE_COUNT_SUMMARY);
